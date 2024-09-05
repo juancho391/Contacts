@@ -27,7 +27,7 @@ export const ContactPage = ({ onLogout }) => {
 
       {/* Formularioa para añadir/editar contactos */}
 
-      <form onSubmit={editingContact ? updateContact : addContact} className="mb-8"></form>
+      {/* <form onSubmit={editingContact ? updateContact : addContact} className="mb-8"></form> */}
     </div>
   );
 };
