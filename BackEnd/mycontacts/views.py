@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404
+import csv
+from io import StringIO
 from .models import Contact
 from rest_framework.response import Response
 from rest_framework import status
@@ -7,6 +9,7 @@ from .serializers import  UserSerializer, ContactSerializer
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from rest_framework import authentication, permissions
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -132,3 +135,38 @@ class SearchContact(APIView):
         return Response({'message' : 'contact list',
                          'contacts' : serializer.data,
                          'status' : status.HTTP_200_OK})
+    
+
+class ExportContacts(APIView):
+    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        
+        # Obtener los contactos del usuario autenticado
+        contacts = Contact.objects.filter(user=request.user.id)
+        serializer = ContactSerializer(contacts, many=True)
+
+        # Usar StringIO para crear el archivo CSV en memoria
+        csv_buffer = StringIO()
+        csv_writer = csv.writer(csv_buffer)
+
+        # Escribir el encabezado
+        csv_writer.writerow(['name', 'phone_number', 'email'])
+
+        # Escribir los datos de los contactos
+        for contact in serializer.data:
+            csv_writer.writerow([contact['name'], contact['phone_number'], contact['email']])
+        
+        # Obtener el contenido del archivo CSV
+        csv_content = csv_buffer.getvalue()
+        csv_buffer.close()
+
+        # Crear la respuesta con el contenido del CSV
+        response = HttpResponse(
+            csv_content,
+            content_type='text/csv',
+            headers={'Content-Disposition': 'attachment; filename="contacts.csv"'}
+        )
+        
+        return response

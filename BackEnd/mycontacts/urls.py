@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Register, Login, ContactList, CreateContact, Logout, UpdateContact, DeleteContact, SearchContact
+from .views import Register, Login, ContactList, CreateContact, Logout, UpdateContact, DeleteContact, SearchContact, ExportContacts
 
 urlpatterns = [
     path('register/', Register.as_view(), name='Register'),
@@ -10,6 +10,7 @@ urlpatterns = [
     path('update-contact/', UpdateContact.as_view(), name='UpdateContact'),
     path('delete-contact/', DeleteContact.as_view(), name='DeleteContact'),
     path('search-contact/', SearchContact.as_view(), name='SearchContact'),
+    path('export-contacts/', ExportContacts.as_view(), name='exportContacts'),
 ]
     
 
