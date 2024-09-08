@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 
-export const LandingPage = ({ onLogin }) => {
+import { Link } from "react-router-dom";
+
+export const LandingPage = ({ onLogin, onRegister }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onLogin(email, password);
   };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md">
@@ -51,13 +55,20 @@ export const LandingPage = ({ onLogin }) => {
               required
             />
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-center mb-4">
             <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">
               Iniciar sesión
             </button>
+          </div>
+
+          <div>
+            <p className="text-center text-gray-600 text-sm">
+              ¿No tienes una cuenta? <Link to="/register">Regístrate aquí</Link>
+            </p>
           </div>
         </form>
       </div>
     </div>
   );
 };
+

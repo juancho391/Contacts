@@ -124,7 +124,55 @@ export const ContactPage = ({ onLogout }) => {
       {/* Lista de contactos */}
 
       <div className="bg-white shadow-md rounded px-8 pb-8">
-        <h2 className="text-2xl">Lista de contactos</h2>
+        <h2 className="text-2xl font-bold mb-4 text-gray-800">
+          Lista de contactos
+        </h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr>
+                <th className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-gray-dark border-b border-grey-light">
+                  Nombre
+                </th>
+                <th className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-gray-dark border-b border-grey-light">
+                  Email
+                </th>
+                <th className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-gray-dark border-b border-grey-light">
+                  Telefono
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {contactos.map((contact) => (
+                <tr key={contact.id} className="hover:bg-gray-100">
+                  <td className="py-4 px-6 border-b border-grey-light">
+                    {contact.name}
+                  </td>
+                  <td className="py-4 px-6 border-b border-grey-light">
+                    {contact.email}
+                  </td>
+                  <td className="py-4 px-6 border-b border-grey-light">
+                    {contact.phone}
+                  </td>
+                  <td className="py-4 px-6 border-b border-grey-light">
+                    <button
+                      onClick={() => setEditingContact(contact)}
+                      className="text-blue-500 animate-pulse hover:text-blue-700 mr-2"
+                    >
+                      <i className="bx bxs-edit text-black"></i>
+                    </button>
+                    <button
+                      onClick={() => deleteContact(contact.id)}
+                      className="text-red-500 animate-pulse hover:text-red-700"
+                    >
+
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
