@@ -165,7 +165,7 @@ export const ContactPage = ({ onLogout }) => {
                       onClick={() => deleteContact(contact.id)}
                       className="text-red-500 animate-pulse hover:text-red-700"
                     >
-
+                      <i class="bx bxs-trash text-black"></i>
                     </button>
                   </td>
                 </tr>

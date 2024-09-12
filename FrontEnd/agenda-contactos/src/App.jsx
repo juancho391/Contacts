@@ -3,6 +3,7 @@ import { ContactPage } from "./components/ContactPage";
 import { LandingPage } from "./components/LandingPage";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { RegisterPage } from "./components/RegisterPage";
+import { Home } from "./components/Home";
 
 function App() {
   const [isLoggendIn, setIsLoggendIn] = useState(false);
@@ -18,9 +19,10 @@ function App() {
 
   return (
     <Routes>
+      <Route path="/" element={<Home />} />
       {/* Ruta para la pagina de inicio */}
       <Route
-        path="/"
+        path="/landingLogin"
         element={
           isLoggendIn ? (
             <Navigate to="/contact" />

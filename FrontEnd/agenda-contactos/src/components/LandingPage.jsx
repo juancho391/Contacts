@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-
 import { Link } from "react-router-dom";
+import useLogin from "../hooks/useLogin";
 
-export const LandingPage = ({ onLogin, onRegister }) => {
+export const LandingPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const { login, loading, error, success } = useLogin();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin(email, password);
+    login(email, password);
   };
 
   return (
@@ -22,6 +22,21 @@ export const LandingPage = ({ onLogin, onRegister }) => {
           <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
             Agenda de contactos
           </h2>
+
+          {/* Mostrar mensaje de éxito */}
+          {success && (
+            <p className="text-green-500 text-center mb-4">
+              ¡Inicio de sesión exitoso!
+            </p>
+          )}
+
+          {/* Mostrar mensaje de error */}
+          {error && (
+            <p className="text-red-500 text-center mb-4">
+              {error}
+            </p>
+          )}
+
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -31,7 +46,7 @@ export const LandingPage = ({ onLogin, onRegister }) => {
             </label>
             <input
               type="email"
-              className="shadow hover:border-blue-300  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow hover:border-blue-300 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
               placeholder="Tu email"
               value={email}
@@ -39,6 +54,7 @@ export const LandingPage = ({ onLogin, onRegister }) => {
               required
             />
           </div>
+
           <div className="mb-6">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -47,7 +63,7 @@ export const LandingPage = ({ onLogin, onRegister }) => {
               Contraseña
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow hover:border-blue-300 appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               type="password"
               id="password"
               value={password}
@@ -55,15 +71,23 @@ export const LandingPage = ({ onLogin, onRegister }) => {
               required
             />
           </div>
+
           <div className="flex items-center justify-center mb-4">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              Iniciar sesión
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+              disabled={loading} // Desactivar botón mientras se carga
+            >
+              {loading ? "Cargando..." : "Iniciar sesión"}
             </button>
           </div>
 
           <div>
             <p className="text-center text-gray-600 text-sm">
-              ¿No tienes una cuenta? <Link to="/register">Regístrate aquí</Link>
+              ¿No tienes una cuenta?{" "}
+              <Link className="hover:text-blue-300" to="/register">
+                Regístrate aquí
+              </Link>
             </p>
           </div>
         </form>
@@ -71,4 +95,3 @@ export const LandingPage = ({ onLogin, onRegister }) => {
     </div>
   );
 };
-
