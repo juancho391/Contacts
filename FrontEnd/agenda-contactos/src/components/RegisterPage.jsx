@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useRegister } from "../hooks/useRegister";
 
 export const RegisterPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-
-  const handleRegister = () => {
-    e.preventDefault();
-  };
+  const {
+    handleSubmit,
+    nombre,
+    email,
+    contraseña,
+    mensaje,
+    setNombre,
+    setEmail,
+    setContraseña,
+  } = useRegister();
   return (
     <div className="flex justify-center items-center min-h-screen ">
       <div className="w-full max-w-md">
         <form
-          onSubmit={handleRegister}
+          onSubmit={handleSubmit}
           className="border mb-8 bg-white shadow-md rounded px-8 pt-6 pb-8"
         >
           <div className=" mb-6">
@@ -21,9 +25,9 @@ export const RegisterPage = () => {
               usuario
             </label>
             <input
-              type="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              type="nombre"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
               placeholder="User"
               className="shadow hover:border-blue-300  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
@@ -48,8 +52,8 @@ export const RegisterPage = () => {
             </label>
             <input
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={contraseña}
+              onChange={(e) => setContraseña(e.target.value)}
               className="shadow hover:border-blue-300  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             />
