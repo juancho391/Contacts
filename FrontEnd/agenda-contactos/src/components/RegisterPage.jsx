@@ -28,7 +28,6 @@ export const RegisterPage = () => {
               type="nombre"
               value={nombre}
               onChange={(e) => setNombre(e.target.value)}
-              placeholder="User"
               className="shadow hover:border-blue-300  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             />
