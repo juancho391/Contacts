@@ -31,11 +31,7 @@ export const LandingPage = () => {
           )}
 
           {/* Mostrar mensaje de error */}
-          {error && (
-            <p className="text-red-500 text-center mb-4">
-              {error}
-            </p>
-          )}
+          {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
           <div className="mb-4">
             <label
