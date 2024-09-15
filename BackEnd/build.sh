@@ -2,9 +2,6 @@
 
 set -o errexit
 
-echo "Changing directory to BackEnd..."
-cd BackEnd
-
 echo "Installing dependencies..."
 pip install -r requirements.txt
 
