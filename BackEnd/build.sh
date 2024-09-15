@@ -2,7 +2,8 @@
 
 set -o errexit
 
-# ModuleNotFoundError: No module named 'BackEnd'
+export PYTHONPATH=$PYTHONPATH:/path/to/BackEnd
+
 
 echo "Installing dependencies..."
 pip install -r requirements.txt
