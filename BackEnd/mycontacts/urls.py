@@ -24,7 +24,7 @@ urlpatterns = [
     path('delete-contact/', DeleteContact.as_view(), name='DeleteContact'),
     path('search-contact/', SearchContact.as_view(), name='SearchContact'),
     path('export-contacts/', ExportContacts.as_view(), name='exportContacts'),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
     
 
