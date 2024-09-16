@@ -7,9 +7,9 @@ export const LandingPage = () => {
   const [password, setPassword] = useState("");
   const { login, loading, error, success } = useLogin();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(email, password);
+    await login(email, password);
   };
 
   return (

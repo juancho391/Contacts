@@ -8,10 +8,11 @@ export const useLogin = () => {
   const login = async (email, password) => {
     setLoading(true);
     // Perform login logic
-    setLoading(false);
+    setError(null);
+    setSuccess(null);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/login/", {
+      const response = await fetch("https://apicontacts-oeub.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

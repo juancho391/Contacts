@@ -22,7 +22,7 @@ export const useRegister = () => {
     };
     try {
       //petición POST para el formulario
-      const response = await fetch("http://localhost:8000/register/", {
+      const response = await fetch("https://apicontacts-oeub.onrender.com/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
